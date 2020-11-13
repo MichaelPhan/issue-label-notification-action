@@ -4,7 +4,7 @@ const { correctRecipients, correctMessage } = require('./utils');
 
 async function run() {
   try {
-    const issueNumber = github.context.payload.issue.number;
+    const issueNumber = (github.context.payload.issue || github.context.payload.pull_request || github.context.payload).number;
     const owner = github.context.repo.owner;
     const repo = github.context.repo.repo;
     const label = github.context.payload.label.name;
